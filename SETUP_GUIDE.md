@@ -19,10 +19,11 @@ This guide will walk you through setting up the Life Client application from scr
 ### 1.1 System Requirements
 
 **Required Software:**
-- Flutter SDK 3.7.0 or higher
-- Dart SDK 3.7.0 or higher
+- Flutter SDK 3.44.9 or higher (the version CI builds with)
+- Dart SDK 3.10.7 or higher
+- `rps` — `dart pub global activate rps` (runs the `scripts:` shortcuts in `pubspec.yaml`)
 - Git
-- Node.js and npm (for Firebase Functions)
+- Node.js and npm (for the Firebase CLI)
 
 **Platform-Specific:**
 
@@ -83,8 +84,8 @@ sudo snap install code --classic
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/life_client.git
-cd life_client
+git clone https://github.com/VB-CORE/hatayi_yasat.git
+cd hatayi_yasat
 
 # Install dependencies
 flutter pub get
@@ -150,7 +151,7 @@ flutterfire --version
 
 ```bash
 # Navigate to project root
-cd life_client
+cd hatayi_yasat
 
 # Run FlutterFire configuration
 flutterfire configure
@@ -510,21 +511,29 @@ cd ../life_admin
 ./scripts/emulator.sh
 ```
 
-This app connects to those emulators only in debug builds — see the `kDebugMode`
-block in [application_init.dart](lib/product/init/application_init.dart). Remove or
-disable it before shipping a release build.
+The emulator wiring lives in the `if (kDebugMode)` block in
+[application_init.dart](lib/product/init/application_init.dart), but it is
+**commented out by default** — a debug build talks to the real Firebase project until
+you uncomment it. Comment it back out before shipping a release build.
 
-**Security rules:** `firebase/firestore.rules` here is kept **byte-identical** to
-`life_admin/firebase/firestore.rules` (the emulator/deploy source). If you change
-one, change the other in the same PR so the two repos never drift.
+**Security rules:** Firestore and Storage rules are **not** kept in this repository —
+they live in `life_admin/firebase/` and are deployed from there, because two apps share
+the same Firebase project and the rules need one source of truth. `firebase.json` here
+still points at `firebase/*.rules`, so `firebase deploy` will not run from this repo.
+Any client change that opens a new write path (new collection, soft delete, counter,
+field) must land in `life_admin`'s rules in the same PR, with a test under
+`firebase/test/`, or it will hit permission-denied in production.
 
 **Functions & deploy:** the functions source, `MONGODB_URI` env, and the deploy
 workflow now live in `life_admin` — see that repo's `docs/admin-backend.md`.
 
 Run with:
 ```bash
-flutter pub run <script_name>
+rps <script_name>
 ```
+
+These are `pubspec.yaml` `scripts:` entries, executed by
+[`rps`](https://pub.dev/packages/rps) — `flutter pub run <script_name>` will not find them.
 
 ---
 
@@ -744,7 +753,7 @@ Error: Missing permissions to access Firestore
 
 If you encounter issues not listed here:
 
-1. Check [GitHub Issues](https://github.com/YOUR_USERNAME/life_client/issues)
+1. Check [GitHub Issues](https://github.com/VB-CORE/hatayi_yasat/issues)
 2. Review [Flutter Documentation](https://flutter.dev/docs)
 3. Check [Firebase Documentation](https://firebase.google.com/docs)
 4. Open a new issue with:

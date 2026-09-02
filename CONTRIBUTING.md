@@ -36,13 +36,14 @@ This project and everyone participating in it is governed by our Code of Conduct
 Before you start contributing, make sure you have:
 
 1. **Development Environment**:
-   - Flutter SDK 3.7.0+
-   - Dart SDK 3.7.0+
+   - Flutter SDK 3.44.9+
+   - Dart SDK 3.10.7+
+   - `rps` (`dart pub global activate rps`) — runs this project's `pubspec.yaml` scripts
    - Android Studio or Xcode (depending on target platform)
    - Git installed
 
 2. **Firebase Project**:
-   - Set up your own Firebase project (see [README.md](README.md#firebase-setup))
+   - Set up your own Firebase project (see [README.md](README.md#3--firebase-setup-required))
    - Configure FlutterFire CLI
 
 3. **Code Editor**:
@@ -58,13 +59,13 @@ Before you start contributing, make sure you have:
 1. Fork the repository on GitHub
 2. Clone your fork locally:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/life_client.git
-   cd life_client
+   git clone https://github.com/YOUR_USERNAME/hatayi_yasat.git
+   cd hatayi_yasat
    ```
 
 3. Add the upstream repository:
    ```bash
-   git remote add upstream https://github.com/ORIGINAL_OWNER/life_client.git
+   git remote add upstream https://github.com/VB-CORE/hatayi_yasat.git
    ```
 
 4. Install dependencies:
@@ -576,8 +577,8 @@ lib/
 
 ### Getting Support
 
-- **Questions**: Open a [GitHub Discussion](https://github.com/OWNER/life_client/discussions)
-- **Bugs**: Open a [GitHub Issue](https://github.com/OWNER/life_client/issues)
+- **Questions**: Open a [GitHub Discussion](https://github.com/VB-CORE/hatayi_yasat/discussions)
+- **Bugs**: Open a [GitHub Issue](https://github.com/VB-CORE/hatayi_yasat/issues)
 - **Email**: grafikhtyapp@gmail.com
 
 ### Communication Channels

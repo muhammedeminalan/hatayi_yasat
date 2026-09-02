@@ -7,7 +7,7 @@
 
 **A comprehensive Flutter application for discovering local places, events, news, and community resources in Hatay, Turkey.**
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.7.0+-02569B?logo=flutter)](https://flutter.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-3.44+-02569B?logo=flutter)](https://flutter.dev)
 [![Firebase](https://img.shields.io/badge/Firebase-Enabled-FFCA28?logo=firebase)](https://firebase.google.com)
 [![Riverpod](https://img.shields.io/badge/State-Riverpod-00A7E1)](https://riverpod.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -26,7 +26,9 @@
 
 ## 📱 About
 
-**Hatay İyasat** (Life Client) is a mobile application designed to help residents and visitors discover and engage with local businesses, events, historical sites, and community resources in Hatay province, Turkey. The app provides a comprehensive directory of places, real-time event information, news updates, job listings, and tourism information.
+**Hatayı Yaşat** is a mobile application designed to help residents and visitors discover and engage with local businesses, events, historical sites, and community resources in Hatay province, Turkey. The app provides a comprehensive directory of places, real-time event information, news updates, job listings, and tourism information.
+
+The app is live on [Google Play](https://play.google.com/store/apps/details?id=com.hatayiyasat.app&hl=tr) and the [App Store](https://apps.apple.com/us/app/hatay%C4%B1-ya%C5%9Fat/id6465691080). Website: [hatayiyasat.com](https://www.hatayiyasat.com/).
 
 ### Key Highlights
 
@@ -35,6 +37,10 @@
 - 📰 **News & Jobs**: Stay updated with local news and employment opportunities
 - 🎉 **Events**: Discover upcoming events and cultural activities
 - 🏛️ **History & Tourism**: Explore historical sites and tourist attractions
+- 👥 **Community**: Groups, discussions, and place ratings
+- 🧑‍💼 **Merchant Panel**: Business owners manage their own store listing
+- 🎟️ **Campaigns**: Coupons redeemed in-store via QR
+- 🔐 **Accounts**: Google / Apple sign-in, plus a guest mode
 - 🌐 **Multi-language**: Turkish and English language support
 - 🎨 **Modern UI**: Material 3 design with light/dark theme support
 
@@ -74,6 +80,26 @@
   - Request scholarships
   - Submit project proposals
 
+- **Accounts & Authentication**
+  - Google Sign-In and Sign in with Apple
+  - Guest mode for browsing without an account
+  - Favorites, saved news, and notifications tied to the account
+
+- **Community**
+  - Create and join local groups
+  - Group discussions with detail threads
+  - Rate and review places
+
+- **Merchant Panel**
+  - Store owners edit their own listing (hours, contact, photos)
+  - Dashboard with listing performance
+  - Read and respond to incoming reviews
+  - Showcase management
+
+- **Campaigns & Coupons**
+  - Browse active campaigns from local businesses
+  - Redeem coupons in-store through a personal QR code
+
 ### Additional Features
 
 - 🗺️ Google Maps integration with custom markers
@@ -90,69 +116,75 @@
 
 ## 🛠️ Tech Stack
 
+> Versions below track `pubspec.yaml`. When you bump a dependency, update this section too.
+
 ### Framework & Language
-- **Flutter**: 3.7.0+
-- **Dart**: 3.7.0+
+- **Flutter**: 3.44.9 (the version CI builds with — see [analyze.yml](.github/workflows/analyze.yml))
+- **Dart SDK**: `^3.10.7`
 
 ### State Management
-- **Riverpod**: 3.0.0-dev.17 (with code generation)
-- **Riverpod Annotation**: For declarative state management
+- **flutter_riverpod**: ^3.1.0 — `@riverpod` Notifier classes with code generation
+- **riverpod_annotation**: ^4.0.0 / **riverpod_generator**: ^4.0.0+1
+- **equatable**: ^2.0.5 — state equality (this project does **not** use Freezed)
+
+### Dependency Injection
+- **get_it**: ^9.2.0 — service locator, wired at app start
 
 ### Backend & Services
-- **Firebase Core**: 3.9.0
-- **Cloud Firestore**: Real-time database
-- **Firebase Storage**: Image and file storage
-- **Firebase Analytics**: User analytics
-- **Firebase Crashlytics**: Crash reporting
-- **Firebase Messaging**: Push notifications
-- **Firebase Remote Config**: Dynamic configuration
-- **Cloud Functions**: Serverless backend
+- **firebase_core**: ^4.13.0
+- **cloud_firestore**: ^6.8.0 — primary database
+- **firebase_auth**: ^6.5.7 — with **google_sign_in** ^7.2.0 and **sign_in_with_apple** ^8.1.0
+- **firebase_storage**: ^13.4.6 — image and file storage
+- **firebase_analytics**: ^12.4.6 / **firebase_crashlytics**: ^5.2.7
+- **firebase_messaging**: ^16.5.0 — push notifications
+- **firebase_remote_config**: ^6.5.6 — feature flags
+- **cloud_functions**: ^6.3.6 — the client calls callable functions (search); the function
+  source is not hosted in this repository
 
 ### Navigation & Routing
-- **GoRouter**: 16.2.0 with code generation
-- **GoRouter Builder**: Declarative routing
+- **go_router**: ^17.0.1 with **go_router_builder**: ^4.1.3 — typed routes via code generation
 
 ### UI & Design
-- **Google Fonts**: Custom typography
-- **Material 3**: Modern design system
-- **Responsive Framework**: Multi-screen support
-- **Lottie**: Animated illustrations
-- **Shimmer**: Loading animations
-- **Carousel Slider**: Image carousels
+- **Material 3** with light / dark / system theming
+- **Typography**: fonts are bundled in `assets/fonts/` — `PlusJakartaSans` for body text and
+  `DMSerifDisplay` for headings. `google_fonts` is intentionally **not** used
+- **responsive_framework**: ^1.1.0 / **responsive_builder**: ^0.7.0
+- **lottie**: ^3.1.2 / **shimmer_animation**: ^2.2.2+1 / **carousel_slider**: ^5.0.0
+- **flutter_svg**: ^2.0.9 / **hugeicons** / **material_symbols_icons**
+- **qr_flutter**: ^4.1.0 — coupon redemption QR codes
 
 ### Maps & Location
-- **Google Maps Flutter**: 2.6.1
-- **Permission Handler**: Location permissions
+- **google_maps_flutter**: ^2.18.0
+- **permission_handler**: ^13.0.0
 
 ### Localization
-- **Easy Localization**: 3.0.1
+- **easy_localization**: ^3.0.1 — keys generated into `lib/product/init/language/locale_keys.g.dart`
 - Supported languages: Turkish (tr), English (en)
 
 ### Media & Files
-- **Image Picker**: Photo selection
-- **Image Cropper**: Image editing
-- **Flutter Image Compress**: Image optimization
-- **File Picker**: Document selection
-- **Syncfusion PDF Viewer**: PDF viewing
+- **image_picker**: ^1.0.4 / **image_cropper**: ^11.0.0
+- **flutter_image_compress**: ^2.0.4
+- **file_picker**: ^11.0.3
+- **syncfusion_flutter_pdfviewer**: ^33.2.13
 
 ### Local Storage
-- **Hive**: Fast local database
-- **Shared Preferences**: Key-value storage
+- **hive_ce**: ^2.11.3 — local cache
+- **shared_preferences**: ^2.2.1
 
 ### Networking & Utilities
-- **Cached Network Image**: Image caching
-- **Connectivity Plus**: Network status
-- **URL Launcher**: External links
-- **Share Plus**: Content sharing
-- **Kartal**: Utility extensions
+- **cached_network_image**: ^3.2.3
+- **connectivity_plus**: ^7.0.0
+- **url_launcher**: ^6.2.3 / **share_plus**: ^12.0.2
+- **kartal**: ^4.2.0 — utility extensions
 
-### Testing
-- **Maestro**: Automated UI testing
-- **Very Good Analysis**: Code quality linting
+### Testing & Quality
+- **flutter_test** — unit tests under `test/`
+- **Maestro** — automated UI flows under `maestro/`
+- **very_good_analysis**: ^10.0.0 — lint rules
 
 ### Shared Library
-- **life_shared**: Custom shared package (v5.4.2)
-  - Repository: [VB-CORE/life_shared](https://github.com/VB-CORE/life_shared.git)
+- **life_shared** — internal shared package, pinned to git tag `v7.0.0`
+  - Repository: [VB-CORE/life_shared](https://github.com/VB-CORE/life_shared)
 
 ---
 
@@ -165,26 +197,45 @@ lib/
 ├── core/                    # Core functionality
 │   ├── dependency/         # Dependency injection (GetIt)
 │   ├── init/              # App initialization
+│   ├── theme/             # Theme, colors, typography
 │   └── service/           # Core services
 │
 ├── features/               # Feature modules
-│   ├── main/              # Main app features
+│   ├── main/              # Bottom-tab destinations
 │   │   ├── home/         # Home screen
 │   │   ├── event/        # Events listing
 │   │   ├── news_jobs/    # News & jobs
 │   │   ├── history/      # Historical content
+│   │   ├── profile/      # User profile
 │   │   └── settings/     # App settings
 │   │
-│   ├── details/           # Detail views
-│   │   ├── place/        # Place details
-│   │   ├── event/        # Event details
-│   │   └── news/         # News details
+│   ├── auth/              # Google / Apple sign-in, guest mode
+│   ├── onboarding/        # First-run onboarding
+│   ├── place_detail/      # Place detail screen
+│   ├── details/           # Event & news detail views
+│   │
+│   ├── community/         # Groups, discussions, ratings
+│   │   ├── groups/
+│   │   ├── group_detail/
+│   │   ├── create_group/
+│   │   ├── discussion_detail/
+│   │   └── rate/
+│   │
+│   ├── merchant_panel/    # Store owner dashboard, reviews, listing edit
+│   ├── monetization/      # Campaigns, coupons, redemption
 │   │
 │   ├── sub_feature/       # Supporting features
 │   │   ├── favorite/     # Favorites management
 │   │   ├── filter_and_search/  # Search & filtering
+│   │   ├── search/       # Search screen
 │   │   ├── forms/        # User submission forms
+│   │   ├── notifications/
+│   │   ├── saved_news/
+│   │   ├── user_qr/      # Personal coupon QR
+│   │   ├── special_agency/
+│   │   ├── useful_links/
 │   │   ├── developers/   # Developer info
+│   │   ├── web_view/
 │   │   └── map_picker/   # Map selection
 │   │
 │   ├── tourism/           # Tourism features
@@ -200,33 +251,45 @@ lib/
 │   ├── package/           # Custom packages
 │   └── generated/         # Generated code
 │
-└── sub_feature/            # Standalone features
+└── sub_feature/            # App shell & standalone features
+    ├── main_tab/          # Bottom navigation shell
     ├── advertisement_board/
-    └── notification_navigate/
+    ├── notification_navigate/
+    ├── filter_button/
+    ├── banned/
+    └── unauthorized/
 ```
 
 ### Design Patterns
 
-- **MVVM Pattern**: Each feature follows Model-View-ViewModel
-- **Provider Pattern**: Riverpod for state management
-- **Repository Pattern**: Data layer abstraction
-- **Dependency Injection**: GetIt for service locator
-- **Code Generation**: Build runner for boilerplate reduction
+- **MVVM**: every feature is a ViewModel + State + View triple
+- **Riverpod `@riverpod` Notifier**: ViewModels are generated notifier classes; state is an
+  `Equatable` class with a hand-written `copyWith` (no Freezed). Async work is tracked with
+  explicit `isLoading` / `isFetching` / `isError` flags rather than `AsyncValue`
+- **Service layer**: Firestore and Storage access goes through `life_shared` services that
+  return a `FirestoreResult` / `StorageResult` union, so failures surface as values instead
+  of thrown exceptions
+- **Dependency Injection**: GetIt as the service locator, reached from ViewModels via
+  `ProjectDependencyMixin` and from widgets via `AppProviderMixin`
+- **Code Generation**: build_runner for providers, routes, models, and assets
 
 ### Feature Structure
 
 Each feature typically contains:
 ```
 feature_name/
-├── provider/              # Riverpod providers & state
-│   ├── feature_provider.dart
-│   └── feature_state.dart
+├── view_model/            # or provider/ in older features
+│   ├── feature_view_model.dart   # @riverpod notifier
+│   └── feature_state.dart        # Equatable state + copyWith
 ├── view/                  # UI components
-│   ├── feature_view.dart
+│   ├── feature_view.dart         # ConsumerStatefulWidget
 │   ├── widget/           # Feature-specific widgets
-│   └── mixin/            # View mixins
+│   └── mixin/            # View mixins (initState/dispose/logic)
 └── model/                 # Feature models (if needed)
 ```
+
+The full set of conventions this project holds itself to — naming, state management,
+DI, routing, and the styling tokens — lives in [CLAUDE.md](CLAUDE.md).
 
 ---
 
@@ -236,16 +299,24 @@ feature_name/
 
 Before you begin, ensure you have the following installed:
 
-- **Flutter SDK**: Version 3.7.0 or higher
+- **Flutter SDK**: 3.44.9 or higher (this is the version CI builds with)
   ```bash
   flutter --version
   # Verify installation
   flutter doctor
   ```
 
-- **Dart SDK**: Version 3.7.0 or higher (comes with Flutter)
+- **Dart SDK**: 3.10.7 or higher (comes with Flutter)
 
-- **Node.js and npm**: For Firebase Functions and Firebase CLI
+- **rps**: the shortcut runner used by this project's `scripts:` block in `pubspec.yaml`
+  ```bash
+  dart pub global activate rps
+  # Add to PATH if needed (add to ~/.bashrc or ~/.zshrc)
+  export PATH="$PATH:$HOME/.pub-cache/bin"
+  rps --version
+  ```
+
+- **Node.js and npm**: For the Firebase CLI
   ```bash
   node --version  # Should be 18+ recommended
   npm --version
@@ -281,8 +352,8 @@ Before you begin, ensure you have the following installed:
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/life_client.git
-cd life_client
+git clone https://github.com/VB-CORE/hatayi_yasat.git
+cd hatayi_yasat
 ```
 
 #### 2. Install Dependencies
@@ -290,6 +361,11 @@ cd life_client
 ```bash
 flutter pub get
 ```
+
+> **Heads-up:** generated files (`*.g.dart`, `*.gen.dart`) are **not** committed to this
+> repository. A fresh clone will **not** compile until you run code generation in
+> [step 6](#6-generate-code). `pubspec.lock` *is* committed, so the generated code and the
+> package versions never drift apart between machines.
 
 #### 3. 🔥 Firebase Setup (REQUIRED)
 
@@ -342,7 +418,11 @@ Ensure these files were created:
 - ✅ `android/app/google-services.json`
 - ✅ `ios/Runner/GoogleService-Info.plist`
 
-**Note**: These files contain your Firebase configuration and are gitignored for security.
+**Note**: This repository already ships the config for the production `savehatay` project, so
+these three files exist right after cloning. Running `flutterfire configure` **overwrites them**
+with your own project's values — which is what you want for local development. They are
+committed on purpose: they hold only client-side identifiers, which are safe to publish (see
+[Security](#-security)). Do not commit your own copies back.
 
 **Verification**:
 ```bash
@@ -355,82 +435,73 @@ ls ios/Runner/GoogleService-Info.plist
 ##### Step 3.5: Firestore Database Setup
 
 1. In Firebase Console, go to **Firestore Database**
-2. Create the following collections:
-   - `places` - For local places/businesses
-   - `events` - For events
-   - `news` - For news articles
-   - `jobs` - For job listings
-   - `history` - For historical content
-   - `developers` - For developer information
-   - `agencies` - For special agencies
+2. The app reads from collections including:
+   - `approvedAdvertise` — approved business listings
+   - `touristicPlaces` — tourist attractions
+   - `news` — news articles
+   - `memories` — historical memory archive
+   - `adBoard` — advertisement board
+   - `approvedCampaigns` / `unApprovedCampaigns` — coupon campaigns
+   - `approvedApplications` / `unApprovedApplications` — user submissions
+   - `chainStores`, `specialAgency`, `scholarship`, `usefulLinks`, `developers`
+   - `categories`, `towns`, `regionalCities`, `regionalTowns` — taxonomy and geography
+   - `notifications`, `logs`, `adminList`, `allowedAdminClaims`
+   - plus the community collections (groups, discussions, ratings)
 
-3. **Set Security Rules** (Important!):
-   ```javascript
-   rules_version = '2';
-   service cloud.firestore {
-     match /databases/{database}/documents {
-       // Read access for authenticated users
-       match /{document=**} {
-         allow read: if request.auth != null;
-         allow write: if false; // Disable public writes
-       }
-     }
-   }
-   ```
+   The full sample schema is in [`data/example_scheme.json`](data/example_scheme.json).
 
-4. **Add sample data** (optional): You can add test documents to each collection
+3. **Add sample data** (recommended): import that schema into the emulator instead of
+   hand-creating documents — see
+   [step 8](#8-firebase-emulator-setup-optional---for-local-development).
 
-##### Step 3.6: Firebase Storage Setup
+##### Step 3.6: Security Rules
 
-1. In Firebase Console, go to **Storage**
-2. Set up Storage rules:
-   ```javascript
-   rules_version = '2';
-   service firebase.storage {
-     match /b/{bucket}/o {
-       match /{allPaths=**} {
-         allow read: if request.auth != null;
-         allow write: if request.auth != null;
-       }
-     }
-   }
-   ```
+> **Firestore and Storage rules are not maintained in this repository.**
+>
+> The production rules and indexes live in the companion admin repository (`life_admin`,
+> private) because two applications share the same Firebase project and the rules have to
+> have a single source of truth. `firebase.json` here points at `firebase/*.rules` paths
+> that are intentionally absent, so **`firebase deploy` will not work from this repo**.
 
-#### 4. Configure Firebase Functions Environment Variables
+For your own Firebase project you need to author your own rules in the Firebase Console.
+A restrictive starting point:
 
-If using Cloud Functions, you need to configure MongoDB connection:
-
-**For Local Development:**
-
-1. Create `.env` file in `functions/` directory:
-```bash
-cd functions
-cp .env.example .env
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if true;      // tighten per collection before going to production
+      allow write: if false;    // no public writes
+    }
+  }
+}
 ```
 
-2. Edit `.env` and add your MongoDB connection string:
-```env
-MONGODB_URI=your_mongodb_connection_string_here
+```javascript
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
 ```
 
-3. Install dependencies:
-```bash
-npm install
-cd ..
-```
+These are deliberately minimal — the real ruleset is considerably stricter and is scoped per
+collection. Review and tighten before deploying anything publicly.
 
-**For Production:**
+#### 4. Cloud Functions
 
-Use Firebase Functions config (recommended):
-```bash
-firebase functions:config:set mongo.uri="your_mongodb_connection_string_here"
-```
+The app calls one Firebase **callable function** (used for search) through
+`lib/product/package/firebase/custom_functions.dart`. The function's source is **not** part of
+this repository and `firebase.json` declares no `functions` target, so there is nothing to
+deploy or configure from here.
 
-**Important**: 
-- Never commit `.env` files to version control
-- The `.env` file is already in `.gitignore`
-- Use `.env.example` as a template
-- For production, prefer Firebase Functions config over environment files
+If you point the app at your own Firebase project, either deploy your own callable with a
+matching name or expect search to fail while the rest of the app works.
 
 #### 5. Android Signing Setup (For Release Builds)
 
@@ -447,31 +518,43 @@ storeFile=PATH_TO_YOUR_KEYSTORE_FILE
 
 #### 6. Generate Code
 
-This project uses code generation for models, localization, and routing. Generate all necessary code:
+This project uses code generation for models, providers, routing, and localization. Generated
+files are not committed, so **this step is mandatory** — without it the project does not compile.
 
 **Option 1: Generate everything at once (Recommended)**
 ```bash
-flutter pub run general
+rps general
 # This runs: build_runner + localization generation
 ```
 
 **Option 2: Generate separately**
 ```bash
-# Generate models and providers (build_runner)
+# Generate models, providers, and routes (build_runner)
 dart run build_runner build --delete-conflicting-outputs
 
 # Generate localization keys
-flutter pub run lang
+rps lang
+```
+
+`general` and `lang` are shortcuts defined in the `scripts:` section of `pubspec.yaml` and are
+run by [`rps`](https://pub.dev/packages/rps), not by `flutter pub run`. If you would rather not
+install `rps`, run the underlying commands directly:
+
+```bash
+dart run build_runner build --delete-conflicting-outputs
+flutter pub run easy_localization:generate \
+  -O lib/product/init/language -f keys -o locale_keys.g.dart \
+  --source-dir assets/translations
 ```
 
 **What gets generated:**
 - Model classes (JSON serialization)
-- Riverpod providers
-- GoRouter routes
+- Riverpod providers (`*_view_model.g.dart`)
+- GoRouter routes (`app_router.g.dart`)
 - Localization keys (`locale_keys.g.dart`)
 - Asset references
 
-**Note**: If you modify models or add new translations, re-run code generation.
+**Note**: If you modify models, providers, routes, or translations, re-run code generation.
 
 #### 7. Run the App
 
@@ -516,19 +599,26 @@ To use Firebase emulators with sample data:
 
 1. **Import example data to emulator format**:
    ```bash
-   flutter pub run emulatorImport
+   rps emulatorImport
+   # equivalent to: node scripts/import_example_data.js
    ```
    This converts `data/example_scheme.json` to Firebase emulator format.
 
 2. **Start Firebase emulators**:
    ```bash
-   flutter pub run emulator
+   rps emulator
+   # equivalent to:
+   # firebase emulators:start --import=./emulator-data --export-on-exit=./emulator-data
    ```
-   This starts all Firebase emulators (Auth, Firestore, Storage, Functions) with the imported data.
+   This starts the Auth (port 3000), Firestore (3004), and Storage (3005) emulators with the
+   imported data, plus the emulator UI.
 
-3. **Configure app to use emulators** (if needed):
-   - The app should automatically connect to emulators when running in debug mode
-   - Check `lib/product/init/application_init.dart` for emulator configuration
+3. **Point the app at the emulators**:
+   - The wiring exists in [`lib/product/init/application_init.dart`](lib/product/init/application_init.dart)
+     but is **commented out by default**, so a debug build talks to the real Firebase project
+   - Uncomment the `if (kDebugMode)` block (`useFirestoreEmulator` / `useAuthEmulator` /
+     `useStorageEmulator` on ports 3004 / 3000 / 3005) to route debug builds to the emulators
+   - Comment it back out before building a release
 
 **Note**: 
 - Emulator data is saved automatically when you stop the emulator (`--export-on-exit`)
@@ -547,7 +637,7 @@ flutter doctor
 flutter pub get
 
 # 3. Generate code (if not done already)
-flutter pub run general
+rps general
 
 # 4. Check for any issues
 flutter analyze
@@ -560,18 +650,41 @@ flutter build ios --debug --no-codesign  # For iOS
 
 **Quick Checklist**:
 - [ ] Flutter SDK installed and verified (`flutter doctor`)
+- [ ] `rps` activated (`rps --version`)
 - [ ] Firebase CLI installed and logged in (`firebase login`)
 - [ ] FlutterFire CLI installed (`flutterfire --version`)
 - [ ] Firebase project created and configured
 - [ ] Firebase files generated (`firebase_options.dart`, `google-services.json`, etc.)
 - [ ] Dependencies installed (`flutter pub get`)
-- [ ] Code generated (`flutter pub run general`)
+- [ ] Code generated (`rps general`) — **required, the project will not compile otherwise**
 - [ ] iOS pods installed (if developing for iOS)
 - [ ] App builds successfully
 
 ---
 
 ## 🧪 Testing
+
+### Unit Tests
+
+Dart unit tests live in `test/` and run with the standard toolchain:
+
+```bash
+flutter test
+```
+
+Note that tests depend on generated code, so run `rps general` first on a fresh clone.
+
+### Static Analysis
+
+```bash
+flutter analyze
+```
+
+CI runs the same check on every pull request to `main` via
+[.github/workflows/analyze.yml](.github/workflows/analyze.yml), which installs dependencies,
+runs code generation, and then analyzes with [`very_good_analysis`](analysis_options.yaml)
+rules. Generated files are deliberately **not** excluded from analysis — since they are never
+committed, analyze is the only gate that catches generated code drifting from its generator.
 
 ### UI Testing with Maestro
 
@@ -602,25 +715,29 @@ cd maestro
 ```
 
 **Test Types**:
-- `smoke` (default): Quick smoke tests
-- `core`: Core functionality tests
-- `features`: Feature-specific tests
-- `regression`: Full regression suite
-- `all`: All available tests
+- `smoke` (default): quick smoke suite — `flows/regression/smoke_tests.yaml`
+- `core`: core functionality — app launch and navigation
+- `features`: feature-specific flows
+- `regression`: full regression suite
+- `all`: all of the above
+
+> The flow library is still being filled in. Today only `flows/core/` and
+> `flows/regression/` contain checked-in flows, so `smoke` is the type that runs end to end.
+> The other types reference flow files that are not in the repository yet and will report
+> missing-file errors for those steps.
 
 **Examples**:
 ```bash
 # Run smoke tests
 ./run_tests.sh smoke
 
-# Run all tests
-./run_tests.sh all
-
 # Run with specific device
 ./run_tests.sh core "iPhone-15-Simulator"
 ```
 
-Test reports are generated in `maestro/test-reports/`
+Or from the project root via the shortcut: `rps mt`.
+
+Test reports are written to `maestro/test-reports/`.
 
 ---
 
@@ -653,8 +770,22 @@ Test reports are generated in `maestro/test-reports/`
 **Problem**: Localization keys not found
 - **Solution**:
   ```bash
-  flutter pub run lang
+  rps lang
   ```
+
+**Problem**: `flutter pub run general` / `flutter pub run lang` fails with "Could not find package"
+- **Cause**: `general`, `lang`, `emulator`, and `emulatorImport` are `pubspec.yaml` `scripts:`
+  entries, which are run by `rps` — not by `flutter pub run`
+- **Solution**:
+  ```bash
+  dart pub global activate rps
+  export PATH="$PATH:$HOME/.pub-cache/bin"
+  rps general
+  ```
+
+**Problem**: Missing `*.g.dart` files, or "Target of URI doesn't exist" errors everywhere
+- **Cause**: Generated files are not committed to this repository
+- **Solution**: Run `rps general` (or the two underlying commands) before building
 
 #### iOS Build Issues
 
@@ -718,7 +849,7 @@ Test reports are generated in `maestro/test-reports/`
 If you encounter issues not listed here:
 1. Check [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed setup instructions
 2. Check [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines
-3. Search existing [GitHub Issues](https://github.com/YOUR_USERNAME/life_client/issues)
+3. Search existing [GitHub Issues](https://github.com/VB-CORE/hatayi_yasat/issues)
 4. Create a new issue with:
    - Your Flutter version (`flutter --version`)
    - Your OS and version
@@ -738,11 +869,14 @@ The app supports multiple languages. Translation files are located in `assets/tr
 
 To add a new language:
 1. Create a new JSON file (e.g., `de.json`)
-2. Update `lib/core/init/core_localize.dart`
-3. Run the localization generator:
+2. Register the locale in `lib/core/init/core_localize.dart`
+3. Regenerate the keys:
    ```bash
-   flutter pub run easy_localization:generate -S assets/translations -O lib/product/init/language -o locale_keys.g.dart -f keys
+   rps lang
    ```
+
+Never hardcode UI strings — use `LocaleKeys.<key>.tr()` from the generated
+`lib/product/init/language/locale_keys.g.dart`.
 
 ### Firebase Remote Config
 
@@ -754,7 +888,8 @@ Update app icons:
 1. Replace `assets/app/app_icon.png`
 2. Run:
    ```bash
-   flutter pub run flutter_launcher_icons
+   dart run flutter_launcher_icons
+   # or: rps updateIcon
    ```
 
 ---
@@ -807,26 +942,19 @@ For more details, please see our [Security Policy](SECURITY.md).
 
 ### Security Best Practices
 
-- **Firebase Security Rules**: Always configure proper Firestore and Storage rules in Firebase Console
-- **Environment Variables**: Never commit `.env` files. Use `.env.example` as a template
-- **API Keys**: Firebase client-side API keys are safe to be public. Security is enforced through Security Rules
-- **Signing Keys**: Android keystore and Google Play service account keys are never committed
+- **Firebase config is committed on purpose**: `firebase_options.dart`,
+  `android/app/google-services.json`, and `ios/Runner/GoogleService-Info.plist` are tracked in
+  this repository. They contain only **client-side identifiers**, which are safe to publish —
+  Google documents them as such. Real access control is enforced by Security Rules, not by
+  hiding these files
+- **Security Rules are the actual boundary**: they are maintained and deployed outside this
+  repository (see [step 3.6](#step-36-security-rules)). Review and tighten them before any
+  public deployment
+- **Environment variables**: never commit `.env` files — `functions/.env` is gitignored
+- **Signing keys**: `android/key.properties`, the Android keystore, and Google Play service
+  account keys are never committed
 
-See [SECURITY.md](SECURITY.md) for detailed security information.
-
-### Security Best Practices
-
-- **Firebase Security Rules**: Always configure proper Firestore and Storage rules in Firebase Console
-- **Environment Variables**: Never commit `.env` files. Use `.env.example` as a template
-- **API Keys**: Firebase client-side API keys are safe to be public. Security is enforced through Security Rules
-- **Signing Keys**: Android keystore and Google Play service account keys are never committed
-
-### Important Security Notes
-
-- Firebase API keys in this repository are **client-side keys** and are intentionally public
-- Real security is enforced through Firebase Security Rules (configured in Firebase Console)
-- Always review and update Security Rules before deploying to production
-- See [SECURITY.md](SECURITY.md) for detailed security information
+See [SECURITY.md](SECURITY.md) for the full security policy.
 
 ---
 
@@ -865,17 +993,16 @@ See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the full list of contributors and ack
 
 ## 📞 Support & Contact
 
-- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/life_client/issues)
+- **Issues**: [GitHub Issues](https://github.com/VB-CORE/hatayi_yasat/issues)
 - **Email**: grafikhtyapp@gmail.com
-- **Project Link**: [https://github.com/YOUR_USERNAME/life_client](https://github.com/YOUR_USERNAME/life_client)
+- **Project Link**: [https://github.com/VB-CORE/hatayi_yasat](https://github.com/VB-CORE/hatayi_yasat)
+- **Website**: [hatayiyasat.com](https://www.hatayiyasat.com/)
 
 ### 📱 Download & Follow
 
 - **Google Play**: [Download on Google Play](https://play.google.com/store/apps/details?id=com.hatayiyasat.app&hl=tr)
 - **App Store**: [Download on App Store](https://apps.apple.com/us/app/hatay%C4%B1-ya%C5%9Fat/id6465691080)
 - **Instagram**: [@hatayiyasat](https://www.instagram.com/hatayiyasat/)
-
----
 
 ---
 
