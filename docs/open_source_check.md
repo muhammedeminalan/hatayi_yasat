@@ -388,7 +388,7 @@ Katkılarınızı bekliyoruz! Lütfen aşağıdaki adımları takip edin:
 
 ## 📄 Lisans (License)
 
-Bu proje MIT lisansı altında lisanslanmıştır - detaylar için [LICENSE](license.md) dosyasına bakın.
+Bu proje MIT lisansı altında lisanslanmıştır - detaylar için [LICENSE](../LICENSE) dosyasına bakın.
 
 ---
 
