@@ -1,6 +1,6 @@
 # Hatayi Yasat
 
-<img height="500" alt="image" src="https://github.com/user-attachments/assets/385be7e4-789c-452c-8639-01090f78f938" />
+<img height="600" alt="image" src="https://github.com/user-attachments/assets/144dd63a-de50-4594-8ef0-6a3e7a35e72f" />
 
 
 <div align="center">
