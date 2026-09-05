@@ -29,7 +29,6 @@ import 'package:lifeclient/product/widget/card/place/general_place_grid_card.dar
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/sheet/place_sort_sheet.dart';
-import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_slider.dart';
 
 part 'widget/home_categories_area.dart';
 part 'widget/home_place_area.dart';
@@ -60,7 +59,6 @@ class _HomeViewState extends ConsumerState<HomeView>
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
-          const AdvertisementSlider(),
           const SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             sliver: SliverMainAxisGroup(

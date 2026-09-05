@@ -43,6 +43,11 @@ final class ProfileMenuCard extends ConsumerWidget {
           ),
         ),
         ContentMenuItem(
+          icon: AppIcons.announcement,
+          label: LocaleKeys.profile_menu_advertisements.tr(),
+          onTap: () => const AdvertisementsRoute().push<void>(context),
+        ),
+        ContentMenuItem(
           icon: AppIcons.settingsFilled,
           label: LocaleKeys.profile_menu_settings.tr(),
           onTap: () => const SettingsRoute().push<void>(context),

@@ -1,4 +1,4 @@
-part of 'advertisement_slider.dart';
+part of 'advertisement_board_view.dart';
 
 final class _AdvertisementItem extends StatelessWidget {
   const _AdvertisementItem(this.item);
