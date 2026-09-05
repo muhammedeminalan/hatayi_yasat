@@ -128,6 +128,7 @@ final class _UploadButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GeneralButtonV2.async(
       isBorderless: true,
+      shrinkWrap: true,
       action: uploadPressed,
       label: isFileNotNull
           ? LocaleKeys.fileUpload_update.tr()
