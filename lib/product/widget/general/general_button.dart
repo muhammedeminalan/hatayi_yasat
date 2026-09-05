@@ -33,6 +33,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required String label,
     bool isEnabled = true,
     bool isBorderless = false,
+    bool shrinkWrap = false,
     IconData? icon,
     IconAlignment? iconAlignment,
     Color? backgroundColor,
@@ -45,6 +46,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       isEnabled: isEnabled,
       buttonPadding: buttonPadding,
       isBorderless: isBorderless,
+      shrinkWrap: shrinkWrap,
       icon: icon,
       iconAlignment: iconAlignment,
       backgroundColor: backgroundColor,
@@ -56,6 +58,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required String label,
     bool isEnabled = true,
     bool isBorderless = false,
+    bool shrinkWrap = false,
     IconData? icon,
     IconAlignment? iconAlignment,
     Color? backgroundColor,
@@ -68,6 +71,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       isEnabled: isEnabled,
       buttonPadding: buttonPadding,
       isBorderless: isBorderless,
+      shrinkWrap: shrinkWrap,
       icon: icon,
       iconAlignment: iconAlignment,
       backgroundColor: backgroundColor,
@@ -79,6 +83,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required this.isAsync,
     this.isEnabled = true,
     this.isBorderless = false,
+    this.shrinkWrap = false,
     this.icon,
     this.iconAlignment,
     this.backgroundColor,
@@ -90,6 +95,7 @@ final class GeneralButtonV2 extends StatefulWidget {
   final bool isAsync;
   final bool isEnabled;
   final bool isBorderless;
+  final bool shrinkWrap;
   final IconData? icon;
   final IconAlignment? iconAlignment;
   final Color? backgroundColor;
@@ -128,8 +134,9 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
             valueListenable: _isLoading,
             builder: (context, value, _) {
               if (!value) {
-                return _Child(
+                return _ChildRow(
                   label: widget.label,
+                  canFlex: !widget.shrinkWrap,
                   icon: widget.icon,
                   iconAlignment: widget.iconAlignment,
                 );
@@ -151,30 +158,6 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
 
   void _changeLoading() {
     _isLoading.value = !_isLoading.value;
-  }
-}
-
-class _Child extends StatelessWidget {
-  const _Child({
-    required this.label,
-    this.icon,
-    this.iconAlignment,
-  });
-
-  final String label;
-  final IconData? icon;
-  final IconAlignment? iconAlignment;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) => _ChildRow(
-        label: label,
-        icon: icon,
-        iconAlignment: iconAlignment,
-        canFlex: constraints.hasBoundedWidth,
-      ),
-    );
   }
 }
 
