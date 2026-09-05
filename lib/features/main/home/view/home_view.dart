@@ -81,16 +81,11 @@ class _HomeViewState extends ConsumerState<HomeView>
   bool get wantKeepAlive => true;
 }
 
-final class _HomeHeaderBlock extends ConsumerWidget {
+final class _HomeHeaderBlock extends StatelessWidget {
   const _HomeHeaderBlock();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final city = ref
-        .watch(ProjectDependencyItems.productProviderState)
-        .selectedCity
-        .description;
-
+  Widget build(BuildContext context) {
     return SliverPadding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
       sliver: SliverToBoxAdapter(
@@ -98,20 +93,10 @@ final class _HomeHeaderBlock extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    city.toUpperCase(),
-                    style: AppText.eyebrow,
-                  ),
-                  const SizedBox(height: AppSpacing.xxs),
-                  Text(
-                    LocaleKeys.home_places.tr(),
-                    key: ValueKey('homePlacesTitle_${context.locale}'),
-                    style: AppText.displayMd,
-                  ),
-                ],
+              child: Text(
+                LocaleKeys.home_places.tr(),
+                key: ValueKey('homePlacesTitle_${context.locale}'),
+                style: AppText.displayMd,
               ),
             ),
             const _HomeSortGridView(),

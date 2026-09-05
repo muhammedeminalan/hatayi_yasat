@@ -32,8 +32,6 @@ final class AdvertisementBoardView extends ConsumerStatefulWidget {
 final class _AdvertisementBoardViewState
     extends ConsumerState<AdvertisementBoardView>
     with _AdvertisementBoardViewMixin {
-  static const double _aspectRatio = 16 / 9;
-
   @override
   Widget build(BuildContext context) {
     final items = ref.watch(advertisementBoardViewModelProvider).advertisements;
@@ -49,7 +47,7 @@ final class _AdvertisementBoardViewState
         itemBuilder: (context, index) => index == 0
             ? const _HouseAdCard()
             : AspectRatio(
-                aspectRatio: _aspectRatio,
+                aspectRatio: 16 / 9,
                 child: _AdvertisementItem(items[index - 1]),
               ),
       ),
