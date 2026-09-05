@@ -46,12 +46,12 @@ final class _AdvertisementBoardViewState
         padding: const PagePadding.vertical12Symmetric(),
         itemCount: items.length + 1,
         separatorBuilder: (context, index) => const EmptyBox.middleHeight(),
-        itemBuilder: (context, index) => AspectRatio(
-          aspectRatio: _aspectRatio,
-          child: index == 0
-              ? const _HouseAdCard()
-              : _AdvertisementItem(items[index - 1]),
-        ),
+        itemBuilder: (context, index) => index == 0
+            ? const _HouseAdCard()
+            : AspectRatio(
+                aspectRatio: _aspectRatio,
+                child: _AdvertisementItem(items[index - 1]),
+              ),
       ),
     );
   }

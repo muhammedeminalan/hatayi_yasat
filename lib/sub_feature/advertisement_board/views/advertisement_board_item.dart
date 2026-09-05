@@ -51,7 +51,8 @@ final class _HouseAdCard extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          spacing: AppSpacing.sm,
           children: [
             Text(
               LocaleKeys.advertisementBoard_houseAdTitle.tr(),
