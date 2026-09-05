@@ -469,6 +469,7 @@
     "options": "{} option"
   },
   "advertisementBoard": {
+    "title": "Advertisements",
     "openUrl": "Open Url",
     "launchUrlError": "An error occurred when launch url",
     "shareAdvertisementSubject": "Visit advertisement owner: {}",
@@ -610,6 +611,7 @@
     "menu": {
       "favorites": "My Favorites",
       "savedNews": "Saved News",
+      "advertisements": "Advertisements",
       "settings": "Settings",
       "rateUs": "Rate Us",
       "privacy": "Privacy Policy",

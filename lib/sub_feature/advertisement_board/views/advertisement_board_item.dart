@@ -1,4 +1,4 @@
-part of 'advertisement_slider.dart';
+part of 'advertisement_board_view.dart';
 
 final class _AdvertisementItem extends StatelessWidget {
   const _AdvertisementItem(this.item);
@@ -51,7 +51,8 @@ final class _HouseAdCard extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          spacing: AppSpacing.sm,
           children: [
             Text(
               LocaleKeys.advertisementBoard_houseAdTitle.tr(),

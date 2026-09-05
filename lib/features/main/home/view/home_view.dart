@@ -29,7 +29,6 @@ import 'package:lifeclient/product/widget/card/place/general_place_grid_card.dar
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/sheet/place_sort_sheet.dart';
-import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_slider.dart';
 
 part 'widget/home_categories_area.dart';
 part 'widget/home_place_area.dart';
@@ -60,7 +59,6 @@ class _HomeViewState extends ConsumerState<HomeView>
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
-          const AdvertisementSlider(),
           const SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             sliver: SliverMainAxisGroup(
@@ -83,16 +81,11 @@ class _HomeViewState extends ConsumerState<HomeView>
   bool get wantKeepAlive => true;
 }
 
-final class _HomeHeaderBlock extends ConsumerWidget {
+final class _HomeHeaderBlock extends StatelessWidget {
   const _HomeHeaderBlock();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final city = ref
-        .watch(ProjectDependencyItems.productProviderState)
-        .selectedCity
-        .description;
-
+  Widget build(BuildContext context) {
     return SliverPadding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
       sliver: SliverToBoxAdapter(
@@ -100,20 +93,10 @@ final class _HomeHeaderBlock extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    city.toUpperCase(),
-                    style: AppText.eyebrow,
-                  ),
-                  const SizedBox(height: AppSpacing.xxs),
-                  Text(
-                    LocaleKeys.home_places.tr(),
-                    key: ValueKey('homePlacesTitle_${context.locale}'),
-                    style: AppText.displayMd,
-                  ),
-                ],
+              child: Text(
+                LocaleKeys.home_places.tr(),
+                key: ValueKey('homePlacesTitle_${context.locale}'),
+                style: AppText.displayMd,
               ),
             ),
             const _HomeSortGridView(),

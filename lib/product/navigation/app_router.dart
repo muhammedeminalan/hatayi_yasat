@@ -37,6 +37,7 @@ import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_v
 import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
+import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_board_view.dart';
 import 'package:lifeclient/sub_feature/banned/banned_view.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
@@ -73,6 +74,7 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
     FavoriteRoute.route,
     SavedNewsRoute.route,
     SpecialAgencyRoute.route,
+    AdvertisementsRoute.route,
     PlaceDetailRoute.route,
     NewsJobsRoute.route,
     FilterRoute.route,
@@ -319,6 +321,19 @@ final class SpecialAgencyRoute extends GoRouteData with $SpecialAgencyRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const SpecialAgencyView();
+}
+
+final class AdvertisementsRoute extends GoRouteData with $AdvertisementsRoute {
+  const AdvertisementsRoute();
+
+  static const route = TypedGoRoute<AdvertisementsRoute>(
+    path: 'advertisements',
+    name: 'Advertisements',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AdvertisementBoardView();
 }
 
 final class ChainStoresRoute extends GoRouteData with $ChainStoresRoute {

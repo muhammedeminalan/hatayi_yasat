@@ -469,6 +469,7 @@
     "options": "{} seçenek"
   },
   "advertisementBoard": {
+    "title": "Reklamlar",
     "openUrl": "Linki Aç",
     "launchUrlError": "Link açılırken bir hata meydana geldi",
     "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}",
@@ -610,6 +611,7 @@
     "menu": {
       "favorites": "Favorilerim",
       "savedNews": "Kaydedilen Haberler",
+      "advertisements": "Reklamlar",
       "settings": "Ayarlar",
       "rateUs": "Bizi Değerlendirin",
       "privacy": "Gizlilik Politikası",

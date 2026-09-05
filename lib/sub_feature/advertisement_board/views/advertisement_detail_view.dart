@@ -1,4 +1,4 @@
-part of 'advertisement_slider.dart';
+part of 'advertisement_board_view.dart';
 
 final class _AdvertisementDetailView extends StatelessWidget
     with _AdvertisementDetailViewHelperMixin {
